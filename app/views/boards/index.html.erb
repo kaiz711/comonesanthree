@@ -1,0 +1,27 @@
+<%= render 'shared/header' %>
+<div align="center">
+  <table class="type11">
+    <thead>
+      <tr align="center">
+        <th style="width:50px; text-align:center;">번호</th>
+        <th style="width:300px; text-align:center;">제목</th>
+        <th style="width:100px; text-align:center;">작성일</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @boards.each do |board| %>
+        <tr align="center">
+          <td><%= board.id %></td>
+          <td><%= link_to board.title, board %></td>
+          <% @time_convert = board.created_at.strftime("%Y-%m-%d") %>
+          <td><%= @time_convert %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="col-md-12 text-center animate-box">
+    <p><%= link_to '할 일 등록', new_board_path, :class => "btn btn-primary btn-lg btn-learn" %></p>
+  </div>
+</div>
+<%= render "shared/footer" %>

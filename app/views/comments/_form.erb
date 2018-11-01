@@ -1,0 +1,17 @@
+<% case url %>
+<% when :board then @path=url_for(controller: "board/comments", action: :create, board_id: commentable.id) %>
+<% when :post then @path=url_for(controller: "post/comments", action: :create, post_id: commentable.id) %>
+<% end %>
+
+<div class="panel-body">
+  <%= form_for [commentable, commentable.comments.new], url: @path, remote: true do |f| %>
+    <div class="input-field">
+      <%= f.text_field :title, class: "form-control", placeholder: "작성자", required: true, id: "comment_title" %>
+      <%= f.text_area :comment, class: "form-control", placeholder: "댓글 쓰기", required: true, id: "comment_body", rows: "3" %>
+    </div>
+    <br />
+    <div class="input-field">
+      <%= f.button "댓글 쓰기", class: "btn indigo darken-4 right" %>
+    </div>
+  <% end %>
+</div>

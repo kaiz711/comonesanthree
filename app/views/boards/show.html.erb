@@ -1,0 +1,42 @@
+<%= render 'shared/header' %>
+<div class="overlay"></div>
+<div class="container">
+  <div class="row animate-box">
+    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+      <h2><%= @board.title %></h2>
+      <div class="panel-body">
+        <%= @board.content %><br /><br />
+        <% if @board.boardimage.present? %>
+          파일명을 클릭하면 다운로드 됩니다.<br /><br />
+          <%= link_to "#{@board.title}", @board.boardimage_url, download: "#{@board.title}" %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <div id="comments" class="comments">
+          <!--댓글 달기폼-->
+          <%= render 'comments/form', commentable: @board, url: :board %><br />
+          <!--댓글 달기 폼끝-->
+          <!--댓글 리스트 반복문 시작 -->
+          <div class="comment-list">
+            <% count = 0 %>
+            <% @board.comments.each do |comment| %>
+                <!--count보다 더 많이 돌아가는 버그-->
+                <% unless count >= @board.comments.count %>
+                    <!--댓글달기 ajax용 렌더-->
+                    <%= render 'comments/item', comment: comment, url: :board %>
+                <% end %>
+                <% count+=1 %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row animate-box">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <p><%= link_to 'Edit', edit_board_path(@board), :class => "btn btn-default btn-lg" %>
+      <%= link_to 'Back', boards_path, :class => "btn btn-default btn-lg" %></p>
+    </div>
+  </div>
+</div>
+<%= render 'shared/footer' %>

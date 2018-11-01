@@ -1,0 +1,13 @@
+(function ($) {
+    console.log("<%= @comment.comment %>")
+    $("#comment_title").val("")
+    $("#comment_body").val("")
+    <%if @url==:post2 %>
+    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url,  category: @category})) %>";
+    <%elsif @url==:submission%>
+    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url,  task: @task})) %>";
+    <% else %>
+    var html = "<%= escape_javascript(render(partial: 'comments/item', locals: {comment: @comment, url: @url})) %>";
+    <%end%>
+    $("#comments").append(html);
+})(jQuery)

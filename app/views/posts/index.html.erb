@@ -1,0 +1,39 @@
+<%= render 'shared/header' %>
+<div id="fh5co-practice" class="fh5co-bg-section">
+  <div class="container">
+    <div class="row animate-box">
+      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+        <h2>깔깔</h2>
+        <p>깔깔깔깔깔</p>
+      </div>
+    </div>
+    <div class="row">
+      <% @posts.each do |post| %>
+      <div class="col-md-4 text-center animate-box">
+        <div class="services">
+          <span class="icon">
+            <i class="icon-food"></i>
+          </span>
+          <div class="desc">
+            <h3><%= post.title %></h3>
+            <p>
+              <%= link_to '보기', post %> | <%= link_to '수정', edit_post_path(post) %><br /><br />
+              <% @time_convert = post.created_at.strftime("%Y-%m-%d") %>
+              <%= @time_convert %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <div class="col-md-12 text-center animate-box">
+        <p><%= link_to 'New Post', new_post_path, :class => "btn btn-primary btn-lg btn-learn" %></p>
+      </div>
+      <div class="col-md-12 text-center animate-box">
+        <p>
+          <%= will_paginate @posts, :previous_label => '이전', :next_label => '다음' %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/footer' %>
