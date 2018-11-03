@@ -7,7 +7,7 @@
       <div class="panel-body">
         <%= @post.content %><br /><br />
           파일명을 클릭하면 다운로드 됩니다.<br /><br />
-          <%= link_to "#{@post.title}", @post.image_url, download: "#{@post.title}" %>
+          <%= link_to "#{@post.title}", @post.image_url, download: "#{@post["image"]}" %>
       </div>
       <div class="panel-body">
         <div id="comments" class="comments">

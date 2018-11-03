@@ -7,9 +7,11 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module ComoneSanthree
-  class Application < Rails::Application
+  class Application < Rails::Appliacation
+    config.time_zone = 'Seoul'
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.encoding = "utf-8"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
